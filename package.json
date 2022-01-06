@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Gustavoph/clean-node-api.git"
   },
   "lint-staged": {
-    "*.js": ["standard"]
+    "*.js": [
+      "standard --fix",
+      "git add"
+    ]
   },
   "husky": {
     "hooks": {
@@ -26,6 +29,7 @@
   },
   "homepage": "https://github.com/Gustavoph/clean-node-api#readme",
   "devDependencies": {
+    "jest": "^27.4.7",
     "lint-staged": "^12.1.5",
     "standard": "^16.0.4"
   }
