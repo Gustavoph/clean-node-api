@@ -11,10 +11,14 @@ module.exports = {
     })
 
     this.db = this.client.db(dbName)
+    return this.db
   },
 
   async disconnect () {
     this.client.close()
-  }
+  },
 
+  async getCollection (name) {
+    return this.db.collection(name)
+  }
 }

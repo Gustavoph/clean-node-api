@@ -7,7 +7,7 @@
     "start": "node src/main/index.js",
     "test": "jest --colors --noStackTrace --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watchAll -c jest-unit-config.js",
-    "test:integration": "npm test -- --watch -c jest-integration-config.js",
+    "test:integration": "npm test -- -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests --silent",
     "test:ci": "npm test -- --coverage --silent",
     "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info",
@@ -33,11 +33,13 @@
     "@shelf/jest-mongodb": "^2.2.0",
     "jest": "^27.4.7",
     "lint-staged": "^12.1.5",
-    "standard": "^16.0.4"
+    "standard": "^16.0.4",
+    "supertest": "^6.1.6"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "express": "^4.17.2",
+    "fast-glob": "^3.2.9",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.2.0",
     "mongoose": "^6.1.5",

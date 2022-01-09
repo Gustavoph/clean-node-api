@@ -1,11 +1,10 @@
-const express = require('express')
-const app = express()
+const MongoHelper = require('../infra/helpers/mongo-helper')
+const env = require('./config/env')
 
-const setupApp = require('./config/setup')
-setupApp(app)
-app.disable('x-powered-by')
-app.get('/mango', (req, res) => {
-  res.send('mango')
-})
+MongoHelper.connect(env.mongoUrl)
+.then(() => {
+    const { app } = require('./config/app');
+    app.listen(5858, () => console.log('Server running'))
+  })
+.catch(console.error)
 
-app.listen(5858, () => console.log('Server running'))
