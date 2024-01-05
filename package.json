@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests",
-    "test:dev": "jest --passWithNoTests --watchAll",
-    "test:staged": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests",
+    "test:unit": "npm test -- --watchAll -c jest-unit.config.ts",
+    "test:integration": "npm test -- --watchAll -c jest-integration.config.ts",
+    "test:ci": "npm test -- --coverage",
+    "test:staged": "npm test -- --findRelatedTests",
     "lint:fix": "eslint src --fix --ext .js,.ts",
     "lint-staged": "lint-staged"
   },

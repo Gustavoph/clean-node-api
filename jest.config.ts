@@ -5,10 +5,13 @@ const config: Config = {
   collectCoverage: false,
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
-  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   transform: {
     '^.+\\.(t|j)sx?$': '@swc/jest'
-  }
+  },
+  collectCoverageFrom: [
+    '<rootDir>/src/**/*.ts',
+    '!<rootDir>/src/main/**'
+  ]
 }
 
 export default config
