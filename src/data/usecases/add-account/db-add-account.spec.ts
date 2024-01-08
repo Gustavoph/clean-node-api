@@ -1,5 +1,5 @@
-import { type Encrypter } from '../../protocols/encrypter'
 import { DbAddAccount } from './db-add-account'
+import { type Encrypter } from './db-add-account.protocols'
 
 const accountData = {
   name: 'valid_name',
