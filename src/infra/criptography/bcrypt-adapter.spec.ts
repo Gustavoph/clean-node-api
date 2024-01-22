@@ -1,6 +1,15 @@
 import bcrypt from 'bcrypt'
 import { BcryptAdapter } from './bcrypt-adapter'
 
+/*
+ - jest.mock mocka a implementação inteira, todos os teste utiliza
+ essa implementação mockada
+
+ - já o jest.spyOn irá mockar naquele teste em específico, fora que o jest.spyOn
+ espionara o método e assim é possível ver quantas vezes o metodo foi chamado
+ e com o que ele foi chamado
+*/
+
 jest.mock('bcrypt', () => ({
   async hash (): Promise<string> {
     return await Promise.resolve('hashed_value')
@@ -16,7 +25,8 @@ describe('Bcrypt Adapter', () => {
   it('should call bcrypt with correct value', async () => {
     const sut = makeSut()
     const hashSpy = jest.spyOn(bcrypt, 'hash')
-    await sut.encrypt('any_value')
+    const teste = await sut.encrypt('any_value')
+    console.log('TESTE:', teste)
     expect(hashSpy).toHaveBeenCalledWith('any_value', salt)
     expect(hashSpy).toHaveBeenCalledTimes(1)
   })
