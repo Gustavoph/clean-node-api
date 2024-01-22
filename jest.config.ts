@@ -5,6 +5,7 @@ const config: Config = {
   collectCoverage: false,
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
+  preset: '@shelf/jest-mongodb',
   transform: {
     '^.+\\.(t|j)sx?$': '@swc/jest'
   },
