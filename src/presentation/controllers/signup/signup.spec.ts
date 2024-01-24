@@ -51,7 +51,7 @@ describe('SignUp Controller', () => {
       body: {
         email: 'any_email@mail.com',
         password: 'any_password',
-        password_confirmation: 'any_paassword'
+        passwordConfirmation: 'any_paassword'
       }
     }
     const httpResponse = await sut.handle(httpRequest)
@@ -65,7 +65,7 @@ describe('SignUp Controller', () => {
       body: {
         name: 'any_name',
         password: 'any_password',
-        password_confirmation: 'any_paassword'
+        passwordConfirmation: 'any_paassword'
       }
     }
     const httpResponse = await sut.handle(httpRequest)
@@ -79,7 +79,7 @@ describe('SignUp Controller', () => {
       body: {
         name: 'any_name',
         email: 'any_email@mail.com',
-        password_confirmation: 'any_paassword'
+        passwordConfirmation: 'any_paassword'
       }
     }
     const httpResponse = await sut.handle(httpRequest)
@@ -87,7 +87,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.body).toEqual(new MissingParamError('password'))
   })
 
-  it('should return 400 if no password_confirmation is provided', async () => {
+  it('should return 400 if no passwordConfirmation is provided', async () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
@@ -98,22 +98,22 @@ describe('SignUp Controller', () => {
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('password_confirmation'))
+    expect(httpResponse.body).toEqual(new MissingParamError('passwordConfirmation'))
   })
 
-  it('should return 400 if no password_confirmation not match password', async () => {
+  it('should return 400 if no passwordConfirmation not match password', async () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
         name: 'any_name',
         email: 'any_email@mail.com',
         password: 'any_password',
-        password_confirmation: 'invalid_password'
+        passwordConfirmation: 'invalid_password'
       }
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new InvalidParamError('password_confirmation'))
+    expect(httpResponse.body).toEqual(new InvalidParamError('passwordConfirmation'))
   })
 
   it('should return 400 if an invalid email is provided', async () => {
@@ -125,7 +125,7 @@ describe('SignUp Controller', () => {
         name: 'any_name',
         email: 'invalid_email@mail.com',
         password: 'any_paassword',
-        password_confirmation: 'any_paassword'
+        passwordConfirmation: 'any_paassword'
       }
     }
 
@@ -143,7 +143,7 @@ describe('SignUp Controller', () => {
         name: 'any_name',
         email: 'valid_email@mail.com',
         password: 'any_paassword',
-        password_confirmation: 'any_paassword'
+        passwordConfirmation: 'any_paassword'
       }
     }
 
@@ -162,7 +162,7 @@ describe('SignUp Controller', () => {
         name: 'any_name',
         email: 'valid_email@mail.com',
         password: 'any_paassword',
-        password_confirmation: 'any_paassword'
+        passwordConfirmation: 'any_paassword'
       }
     }
 
@@ -179,7 +179,7 @@ describe('SignUp Controller', () => {
         name: 'any_name',
         email: 'valid_email@mail.com',
         password: 'any_paassword',
-        password_confirmation: 'any_paassword'
+        passwordConfirmation: 'any_paassword'
       }
     }
 
@@ -202,7 +202,7 @@ describe('SignUp Controller', () => {
         name: 'any_name',
         email: 'valid_email@mail.com',
         password: 'any_paassword',
-        password_confirmation: 'any_paassword'
+        passwordConfirmation: 'any_paassword'
       }
     }
 
@@ -218,7 +218,7 @@ describe('SignUp Controller', () => {
         name: 'any_name',
         email: 'valid_email@mail.com',
         password: 'any_password',
-        password_confirmation: 'any_password'
+        passwordConfirmation: 'any_password'
       }
     }
 
