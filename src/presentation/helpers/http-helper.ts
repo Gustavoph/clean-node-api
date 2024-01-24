@@ -7,7 +7,7 @@ export const badRequest = (error: Error): HttpResponse => ({
 })
 
 export const serverError = (error: Error): HttpResponse => ({
-  statusCode: 400,
+  statusCode: 500,
   body: new ServerError(error.stack!)
 })
 
