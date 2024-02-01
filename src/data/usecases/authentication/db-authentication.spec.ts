@@ -1,10 +1,5 @@
-import { type AuthenticationModel } from '../../../domain/usecases/authentication'
-import { type HashCompare } from '../../protocols/criptography/hash-compare'
-import { type TokenGenerator } from '../../protocols/criptography/token-generator'
-import { type LoadAccountByEmailRepository } from '../../protocols/db/log-account-by-email-repository'
-import { type UpdateAccessTokenRepository } from '../../protocols/db/update-access-token-repository'
-import { type AccountModel } from '../add-account/db-add-account.protocols'
 import { DbAuthentication } from './db-authentication'
+import { type AccountModel, type AuthenticationModel, type HashCompare, type LoadAccountByEmailRepository, type TokenGenerator, type UpdateAccessTokenRepository } from './db-authentication-protocols'
 
 interface SutTypes {
   sut: DbAuthentication
