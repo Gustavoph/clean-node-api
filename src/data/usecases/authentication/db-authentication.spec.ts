@@ -114,4 +114,10 @@ describe('DbAuthentication UseCase', () => {
     jest.spyOn(tokenGeneratorStub, 'generate').mockReturnValueOnce(Promise.reject(new Error()))
     void expect(async (): Promise<string | null> => await sut.auth({ email: 'any_email@mail.com', password: 'any_password' })).rejects.toThrow()
   })
+
+  it('Should return an accessToken on succees', async () => {
+    const { sut } = makeSut()
+    const accessToken = await sut.auth(makeFakeAuthentication())
+    expect(accessToken).toBe('any_token')
+  })
 })
