@@ -85,7 +85,7 @@ describe('DbAuthentication UseCase', () => {
   it('Should throw if LoadAccountByEmailRepository throws', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()
     jest.spyOn(loadAccountByEmailRepositoryStub, 'load').mockReturnValueOnce(Promise.reject(new Error()))
-    void expect(async (): Promise<string | null> => await sut.auth({ email: 'any_email@mail.com', password: 'any_password' })).rejects.toThrow()
+    void expect(async (): Promise<string | null> => await sut.auth(makeFakeAuthentication())).rejects.toThrow()
   })
 
   it('Should return null if LoadAccountByEmailRepository returns null', async () => {
@@ -105,7 +105,7 @@ describe('DbAuthentication UseCase', () => {
   it('Should throw if hashCompare throws', async () => {
     const { sut, hashCompareStub } = makeSut()
     jest.spyOn(hashCompareStub, 'compare').mockReturnValueOnce(Promise.reject(new Error()))
-    void expect(async (): Promise<string | null> => await sut.auth({ email: 'any_email@mail.com', password: 'any_password' })).rejects.toThrow()
+    void expect(async (): Promise<string | null> => await sut.auth(makeFakeAuthentication())).rejects.toThrow()
   })
 
   it('Should return null if HashCompare returns false', async () => {
@@ -125,7 +125,7 @@ describe('DbAuthentication UseCase', () => {
   it('Should throw if TokenGenerate throws', async () => {
     const { sut, tokenGeneratorStub } = makeSut()
     jest.spyOn(tokenGeneratorStub, 'generate').mockReturnValueOnce(Promise.reject(new Error()))
-    void expect(async (): Promise<string | null> => await sut.auth({ email: 'any_email@mail.com', password: 'any_password' })).rejects.toThrow()
+    void expect(async (): Promise<string | null> => await sut.auth(makeFakeAuthentication())).rejects.toThrow()
   })
 
   it('Should return an accessToken on succees', async () => {
@@ -139,5 +139,11 @@ describe('DbAuthentication UseCase', () => {
     const updateSpy = jest.spyOn(updateAccessTokenRepositoryStub, 'update')
     await sut.auth(makeFakeAuthentication())
     expect(updateSpy).toHaveBeenCalledWith('any_id', 'any_token')
+  })
+
+  it('Should throw if TokenGenerate throws', async () => {
+    const { sut, updateAccessTokenRepositoryStub } = makeSut()
+    jest.spyOn(updateAccessTokenRepositoryStub, 'update').mockReturnValueOnce(Promise.reject(new Error()))
+    void expect(async (): Promise<string | null> => await sut.auth(makeFakeAuthentication())).rejects.toThrow()
   })
 })
