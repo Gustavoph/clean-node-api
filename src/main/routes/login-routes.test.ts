@@ -5,7 +5,7 @@ import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helper'
 
 // testar somente casos de sucesso
 
-describe('SignUp Routes', () => {
+describe('Login Routes', () => {
   beforeAll(async () => {
     // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
     await MongoHelper.connect(process.env.MONGO_URL as string)
@@ -20,13 +20,15 @@ describe('SignUp Routes', () => {
     await accountCollection.deleteMany({})
   })
 
-  it('should return an account on success', async () => {
-    await request(app).post('/api/signup')
-      .send({
-        name: 'Gustavo Oliveira',
-        email: 'gustavo@gmail.com',
-        password: '123456Ab',
-        passwordConfirmation: '123456Ab'
-      }).expect(200)
+  describe('POST /signup', () => {
+    it('should return an 200 on signup', async () => {
+      await request(app).post('/api/signup')
+        .send({
+          name: 'Gustavo Oliveira',
+          email: 'gustavo@gmail.com',
+          password: '123456Ab',
+          passwordConfirmation: '123456Ab'
+        }).expect(200)
+    })
   })
 })
