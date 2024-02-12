@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/main/server.js",
+    "start": "nodemon -L ./dist/main/server.js",
     "build": "rimraf dist && tsc",
     "up": "npm run build && docker compose up -d",
     "down": "docker compose down",
@@ -28,6 +28,7 @@
     "git-commit-msg-linter": "^5.0.4",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
+    "nodemon": "^3.0.3",
     "validator": "^13.11.0"
   },
   "devDependencies": {
