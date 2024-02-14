@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { type Express, Router } from 'express'
 import { readdirSync } from 'node:fs'
 import { join } from 'node:path'
