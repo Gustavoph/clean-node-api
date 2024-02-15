@@ -1,7 +1,7 @@
-import { type AccountModel } from '../../../domain/models/account'
-import { type AddAccount, type AddAccountModel } from '../../../domain/usecases/add-account'
-import { EmailInUseError, MissingParamError } from '../../errors'
-import { badRequest, forbidden, ok, serverError } from '../../helpers/http/http-helper'
+import { type AccountModel } from '../../../../domain/models/account'
+import { type AddAccount, type AddAccountModel } from '../../../../domain/usecases/add-account'
+import { EmailInUseError, MissingParamError } from '../../../errors'
+import { badRequest, forbidden, ok, serverError } from '../../../helpers/http/http-helper'
 import { type Authentication, type AuthenticationModel, type HttpRequest, type Validation } from './signup-controller-protocols'
 import { SignUpController } from './signup-controller'
 
