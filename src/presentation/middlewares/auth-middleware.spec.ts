@@ -12,6 +12,10 @@ const makeFakeAccount = (): AccountModel => ({
   password: 'hashed_password'
 })
 
+const makeFakeRequest = (): HttpRequest => ({
+  headers: { 'x-access-token': 'any_token' }
+})
+
 const makeLoadAccountByToken = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
     async load (accessToken: string, role?: string): Promise<AccountModel> {
@@ -35,16 +39,14 @@ const makeSut = (): SutTypes => {
 describe('Auth Middleware', () => {
   it('should return 403 if no x-access-token if found exists in headers', async () => {
     const { sut } = makeSut()
-    const httpRequest: HttpRequest = {}
-    const httpResponse = await sut.handle(httpRequest)
+    const httpResponse = await sut.handle({})
     expect(httpResponse).toEqual(forbidden(new AccessDeniedError()))
   })
 
   it('should call LoadAccountByToken with correct accessToken', async () => {
     const { sut, loadAccountByTokenStub } = makeSut()
     const loadSpy = jest.spyOn(loadAccountByTokenStub, 'load')
-    const httpRequest: HttpRequest = { headers: { 'x-access-token': 'any_token' } }
-    await sut.handle(httpRequest)
+    await sut.handle(makeFakeRequest())
     expect(loadSpy).toHaveBeenCalledWith('any_token')
   })
 })
