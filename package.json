@@ -15,6 +15,7 @@
     "test:integration": "npm test -- --watchAll -c jest-integration.config.ts",
     "test:ci": "npm test -- --coverage",
     "test:staged": "npm test -- --findRelatedTests",
+    "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info",
     "lint:fix": "eslint src --fix --ext .js,.ts",
     "lint-staged": "lint-staged"
   },
@@ -43,6 +44,7 @@
     "@types/node": "^20.10.4",
     "@types/supertest": "^6.0.2",
     "@types/validator": "^13.11.7",
+    "coveralls": "^3.1.1",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "lint-staged": "^15.2.0",
